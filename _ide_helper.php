@@ -13207,5 +13207,78 @@ namespace {
 		 }
 
 	}
+	class Flash extends \Laracasts\Flash\Flash{
+		/**
+		 * 
+		 *
+		 * @param SessionStore $session
+		 * @static 
+		 */
+		 public static function __construct($session){
+			//Method inherited from \Laracasts\Flash\FlashNotifier
+			 \Laracasts\Flash\FlashNotifier::__construct($session);
+		 }
+
+		/**
+		 * 
+		 *
+		 * @param $message
+		 * @param $title
+		 * @static 
+		 */
+		 public static function success($message){
+			//Method inherited from \Laracasts\Flash\FlashNotifier
+			 \Laracasts\Flash\FlashNotifier::success($message);
+		 }
+
+		/**
+		 * 
+		 *
+		 * @param $message
+		 * @param $title
+		 * @static 
+		 */
+		 public static function error($message){
+			//Method inherited from \Laracasts\Flash\FlashNotifier
+			 \Laracasts\Flash\FlashNotifier::error($message);
+		 }
+
+		/**
+		 * 
+		 *
+		 * @param $message
+		 * @param $title
+		 * @static 
+		 */
+		 public static function warning($message){
+			//Method inherited from \Laracasts\Flash\FlashNotifier
+			 \Laracasts\Flash\FlashNotifier::warning($message);
+		 }
+
+		/**
+		 * 
+		 *
+		 * @param $message
+		 * @param $title
+		 * @static 
+		 */
+		 public static function overlay($message, $title = 'Notice'){
+			//Method inherited from \Laracasts\Flash\FlashNotifier
+			 \Laracasts\Flash\FlashNotifier::overlay($message, $title);
+		 }
+
+		/**
+		 * 
+		 *
+		 * @param $message
+		 * @param string $level
+		 * @static 
+		 */
+		 public static function message($message, $level = 'info', $title = 'Notice'){
+			//Method inherited from \Laracasts\Flash\FlashNotifier
+			 \Laracasts\Flash\FlashNotifier::message($message, $level, $title);
+		 }
+
+	}
 }
 
