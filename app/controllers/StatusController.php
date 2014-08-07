@@ -1,6 +1,7 @@
 <?php
 
 use Larabook\Core\CommandBus;
+use Larabook\Forms\PublishStatusForm;
 use Larabook\Statuses\PublishStatusCommand;
 use Larabook\Statuses\StatusRepository;
 
@@ -14,11 +15,18 @@ class StatusController extends \BaseController {
     protected $statusRepository;
 
     /**
-     * @param StatusRepository $statusRepository
+     * @var PublishStatusForm
      */
-    function __construct(StatusRepository $statusRepository)
+    protected $publishStatusForm;
+
+    /**
+     * @param PublishStatusForm $publishStatusForm
+     * @param StatusRepository  $statusRepository
+     */
+    function __construct(PublishStatusForm $publishStatusForm, StatusRepository $statusRepository)
     {
         $this->statusRepository = $statusRepository;
+        $this->publishStatusForm = $publishStatusForm;
     }
 
     /**
@@ -51,7 +59,9 @@ class StatusController extends \BaseController {
 	 */
 	public function store()
 	{
-       $status = $this->execute(
+        $this->publishStatusForm->validate(Input::only('body'));
+
+        $this->execute(
             new PublishStatusCommand(Input::get('body'), Auth::id())
         );
 

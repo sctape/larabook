@@ -2,10 +2,13 @@
 
 @section('content')
     <h1>Post a Status</h1>
+
+    @include('layouts.partials.errors')
+
     {{ Form::open(['route' => 'statuses_path']) }}
         <div class="form-group">
             {{ Form::label('body', 'Status:') }}
-            {{ Form::textarea('body', null, ['class' => 'form-control', 'required' => 'required']) }}
+            {{ Form::textarea('body', null, ['class' => 'form-control']) }}
         </div>
 
         <div class="form-group">
