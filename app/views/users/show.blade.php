@@ -13,7 +13,6 @@
             @endif
 
             @include('status.partials.statuses', ['statuses' => $user->statuses])
-
         </div>
     </div>
 @stop

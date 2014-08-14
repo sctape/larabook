@@ -2,7 +2,7 @@
 
 use Larabook\Forms\SignInForm;
 
-class SessionsController extends \BaseController {
+class SessionsController extends BaseController {
 
     /**
      * @var SignInForm
@@ -33,8 +33,8 @@ class SessionsController extends \BaseController {
 	 * @return Response
 	 */
 	public function store()
-	{
-		//fetch the form input
+    {
+        //fetch the form input
         $formData = Input::only('email', 'password');
 
         //validate the form
@@ -42,7 +42,10 @@ class SessionsController extends \BaseController {
         $this->signInForm->validate($formData);
 
         //if is valid, then try to sign in
-        if (Auth::attempt($formData)) {
+        if (!Auth::attempt($formData)) {
+            Flash::message('We were unable to sign you in. Please try again.');
+            return Redirect::back()->withInput();
+        } else {
             //redirect to statuses
             Flash::message('Welcome Back!');
             return Redirect::intended('/statuses');
