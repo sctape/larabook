@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ route('home') }}">Larabook</a>
+            <a class="navbar-brand" href="{{ Auth::check() ? route('statuses_path') : route('home') }}">Larabook</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -27,6 +27,7 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li>{{ link_to_route('profile_path', "My Profile", $currentUser->username) }}</li>
+                            <li>{{ link_to_route('statuses_path', "My Feed") }}</li>
                             <li class="divider"></li>
                             <li>{{ link_to_route('logout_path', 'Log Out') }}</li>
                         </ul>
