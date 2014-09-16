@@ -79,3 +79,8 @@ Route::delete('follows/{id}', [
         'as' => 'follow_path',
         'uses' => 'FollowsController@destroy'
     ]);
+
+/**
+ * Password Reset
+ */
+Route::controller('password', 'RemindersController');
