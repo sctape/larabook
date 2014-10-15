@@ -21,7 +21,7 @@ class StatusRepository {
         $userIds = $user->followedUsers()->lists('followed_id');
         $userIds[] = $user->id;
 
-        return Status::whereIn('user_id', $userIds)->latest()->get();
+        return Status::with('comments')->whereIn('user_id', $userIds)->latest()->get();
     }
 
     /**
@@ -37,5 +37,14 @@ class StatusRepository {
         return User::findOrFail($userId)
             ->statuses()
             ->save($status);
+    }
+
+    public function leaveComment($user_id, $status_id, $body)
+    {
+        $comment = Comment::leave($body, $status_id);
+
+        User::findOrFail($user_id)->comments()->save($comment);
+
+        return $comment;
     }
 } 

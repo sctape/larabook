@@ -60,6 +60,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     }
 
     /**
+     * A user has many comments
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany('Larabook\Statuses\Comment');
+    }
+
+    /**
      * Register a new user
      *
      * @param $username
